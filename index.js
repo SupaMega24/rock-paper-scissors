@@ -1,11 +1,11 @@
 
-let choices = ["rock", "paper", "scissors"];
-let randomIndex = Math.floor(Math.random() * choices.length);
-let randomChoice = choices[randomIndex];
 
-function getComputerChoice(randomChoice) {
-    computerChoice = randomChoice;
-    return computerChoice;
+
+function getComputerChoice() {
+    let choices = ["rock", "paper", "scissors"];
+    let randomIndex = Math.floor(Math.random() * choices.length);
+    let randomChoice = choices[randomIndex];
+    return randomChoice;
 }
 
 function getUserChoice() {
@@ -13,8 +13,28 @@ function getUserChoice() {
     return userChoice.toLowerCase();
 }
 
-console.log(getUserChoice());
-console.log(getComputerChoice(randomChoice));
+function playRound(userSelection, computerSelection) {   
+    
+    if (userSelection === computerSelection) {
+        console.log("It's a tie!");
+    }
+    else if (
+        (userSelection === 'rock' && computerSelection === 'scissors') ||
+        (userSelection === 'scissors' && computerSelection === 'paper') ||
+        (userSelection === 'paper' && computerSelection === 'rock')
+        ) {
+            console.log('You win!');
+        }
+    else {
+        console.log('Sorry, you lose.');
+    }    
+    
+}
+
+const userSelection = getUserChoice();
+const computerSelection = getComputerChoice();
+console.log(playRound(userSelection, computerSelection));
+
 
 
 
