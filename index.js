@@ -13,27 +13,59 @@ function getUserChoice() {
     return userChoice.toLowerCase();
 }
 
-function playRound(userSelection, computerSelection) {   
-    
+
+function playRound(userSelection, computerSelection) {
+
     if (userSelection === computerSelection) {
-        console.log("It's a tie!");
+        return "It's a tie!";
     }
+
     else if (
         (userSelection === 'rock' && computerSelection === 'scissors') ||
         (userSelection === 'scissors' && computerSelection === 'paper') ||
         (userSelection === 'paper' && computerSelection === 'rock')
         ) {
-            console.log('You win!');
+            return 'You win!';            
         }
-    else {
-        console.log('Sorry, you lose.');
-    }    
-    
+
+    else {            
+        return 'Sorry, you lose.';        
+    } 
 }
 
-const userSelection = getUserChoice();
-const computerSelection = getComputerChoice();
-console.log(playRound(userSelection, computerSelection));
+function game() {
+
+    let playerScore = 0;
+    let computerScore = 0;
+  
+    for(let i = 0; i < 5; i++) {
+  
+      const userSelection = getUserChoice();
+      const computerSelection = getComputerChoice();
+  
+      const result = playRound(userSelection, computerSelection);
+  
+      if(result === 'You win!') {
+        playerScore++;
+      } else if(result === 'Sorry, you lose.') {
+        computerScore++;
+      }
+  
+    }
+  
+    console.log(`You: ${playerScore}`);
+    console.log(`Computer: ${computerScore}`);
+  
+  }
+  
+  game();
+
+
+
+
+
+
+
 
 
 
