@@ -8,4 +8,13 @@ function getComputerChoice(randomChoice) {
     return computerChoice;
 }
 
+function getUserChoice() {
+    userChoice = prompt("Choose rock, paper or scissors").toLowerCase();
+    return userChoice.toLowerCase();
+}
+
+console.log(getUserChoice());
 console.log(getComputerChoice(randomChoice));
+
+
+
