@@ -1,64 +1,52 @@
 
+let playerScore = 0;
+let computerScore = 0;
+let gamesPlayed = 0;
 
-
-function getComputerChoice() {
-    let choices = ["rock", "paper", "scissors"];
-    let randomIndex = Math.floor(Math.random() * choices.length);
-    let randomChoice = choices[randomIndex];
-    return randomChoice;
+function computerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * 3);
+    return choices[randomIndex];
 }
 
-function getUserChoice() {
-    userChoice = prompt("Choose rock, paper or scissors").toLowerCase();
-    return userChoice.toLowerCase();
-}
-
-
-function playRound(userSelection, computerSelection) {
-
-    if (userSelection === computerSelection) {
-        return "It's a tie!";
-    }
-
-    else if (
-        (userSelection === 'rock' && computerSelection === 'scissors') ||
-        (userSelection === 'scissors' && computerSelection === 'paper') ||
-        (userSelection === 'paper' && computerSelection === 'rock')
-        ) {
-            return 'You win!';            
-        }
-
-    else {            
-        return 'Sorry, you lose.';        
-    } 
-}
-
-function game() {
-
-    let playerScore = 0;
-    let computerScore = 0;
-  
-    for(let i = 0; i < 5; i++) {
-  
-      const userSelection = getUserChoice();
-      const computerSelection = getComputerChoice();
-  
-      const result = playRound(userSelection, computerSelection);
-  
-      if(result === 'You win!') {
+function playerChoice(choice) {
+    const computer = computerChoice();
+    if (choice === computer) {
+        alert("It's a tie!".toUpperCase());
+    } else if ((choice === 'rock' && computer === 'scissors') ||
+               (choice === 'paper' && computer === 'rock') ||
+               (choice === 'scissors' && computer === 'paper')) {
         playerScore++;
-      } else if(result === 'Sorry, you lose.') {
+        updateScores();
+        alert(`You win! ${choice} beats ${computer}`.toUpperCase());
+    } else {
         computerScore++;
-      }
-  
+        updateScores();
+        alert(`Computer wins! ${computer} beats ${choice}`.toUpperCase());
     }
-  
-    console.log(`You: ${playerScore}`);
-    console.log(`Computer: ${computerScore}`);
-  
-  }
-  
-  game();
+    gamesPlayed++;
+
+    if (gamesPlayed === 5) {
+        if (playerScore > computerScore) {
+            alert("Player is the champion!".toUpperCase());
+        } else if (playerScore < computerScore) {
+            alert("Computer is the champion!".toUpperCase());
+        } else {
+            alert("It's a draw!".toUpperCase());
+        }
+        
+        playerScore = 0;
+        computerScore = 0;
+        gamesPlayed = 0;
+    }
+    updateScores();
+}
+
+function updateScores() {
+    document.getElementById("playerScore").textContent = playerScore;
+    document.getElementById("computerScore").textContent = computerScore;
+}
+
 
 
 
