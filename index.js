@@ -1,6 +1,7 @@
 
 let playerScore = 0;
 let computerScore = 0;
+let tieScore = 0;
 let gamesPlayed = 0;
 
 function computerChoice() {
@@ -12,6 +13,8 @@ function computerChoice() {
 function playerChoice(choice) {
     const computer = computerChoice();
     if (choice === computer) {
+        tieScore++;
+        updateScores();
         alert("It's a tie!".toUpperCase());
     } else if ((choice === 'rock' && computer === 'scissors') ||
                (choice === 'paper' && computer === 'rock') ||
@@ -26,7 +29,7 @@ function playerChoice(choice) {
     }
     gamesPlayed++;
 
-    if (gamesPlayed === 5) {
+    if (gamesPlayed === 11) {
         if (playerScore > computerScore) {
             alert("Player is the champion!".toUpperCase());
         } else if (playerScore < computerScore) {
@@ -37,6 +40,7 @@ function playerChoice(choice) {
         
         playerScore = 0;
         computerScore = 0;
+        tieScore = 0;
         gamesPlayed = 0;
     }
     updateScores();
@@ -45,7 +49,9 @@ function playerChoice(choice) {
 function updateScores() {
     document.getElementById("playerScore").textContent = playerScore;
     document.getElementById("computerScore").textContent = computerScore;
+    document.getElementById("tieScore").textContent = tieScore;
 }
+
 
 
 
